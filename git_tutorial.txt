@@ -288,7 +288,87 @@ ex: git remote remove origin
 
 git remote show <name>  = Shows information like fetch/push URLs, tracking branches, etc.
 ex= git remote show origin
+============================
+got to commit with help of commit id 
+=================================
 
+✅ 1. Checkout to that commit (detached HEAD)
+If you just want to view or test that commit:
 
+git checkout cec139d
 
+This will put you in a detached HEAD state — you're not on a branch.
 
+🔁 2. Create a new branch from that commit
+To make changes based on that commit:
+
+git checkout -b new-branch-name cec139d
+
+🔙 3. Revert back the working directory to that commit (hard reset)
+⚠️ Warning: This will permanently reset your branch history if pushed.
+
+git reset --hard cec139d
+
+🕒 4. Revert changes introduced by that commit (non-destructive)
+If you want to undo what that commit did:
+
+git revert cec139d
+=================================================
+check which files are present in each Git area: Working Directory, Staging Area, Local Repository, and Remote Repository.
+=======================================================
+| Area                  | What it Contains                                 | Command to View                                   |
+| --------------------- | ------------------------------------------------ | ------------------------------------------------- |
+| **Working Directory** | Your local files (edited or new)                 | `ls -la` or `git status`                          |
+| **Staging Area**      | Files added with `git add`, ready to commit      | `git status`                                      |
+| **Local Repository**  | Files that have been committed                   | `git log`, `git show`, `git ls-files`             |
+| **Remote Repository** | Files committed & pushed to remote (like GitHub) | `git fetch` + `git diff` or `git log origin/main` |
+---------------------------------------------------------
+🔍 1. Working Directory
+To list all files including untracked:
+
+ls -la
+To see changes compared to the staging area:
+
+git status
+----------------------------------------------
+📦 2. Staging Area
+To see what is staged (added with git add):
+
+git diff --cached
+Or simply:
+
+git status
+This shows both staged and unstaged changes.
+-----------------------------------------------------
+🗃️ 3. Local Repository (Committed Files)
+To see all files that are being tracked and committed:
+
+git ls-files
+To see the history of commits:
+
+git log --oneline
+--------------------------------------------------
+☁️ 4. Remote Repository (e.g., GitHub)
+First, fetch remote changes:
+
+git fetch
+
+To compare local branch vs remote:
+
+git diff origin/main..HEAD
+To see commits only on the remote:
+
+git log origin/main --oneline
+-----------------------------------------
+✅ Want to See Everything At Once?
+Run these:
+
+# Working and staging
+git status
+
+# Committed files
+git ls-files
+
+# Remote vs local
+git fetch
+git diff origin/main..HEAD

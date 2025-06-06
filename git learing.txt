@@ -1,5 +1,6 @@
 https://git-scm.com/docs/
-------------------------------------------
+
+
 git is version control system (VCS).It’s  helps you track changes to your code over time. It allows multiple developers to work on the same project without stepping on each other's toes, and it maintains a history of changes to revert back to previous versions if needed.
 
 How it works: Git runs locally on your machine. You initialize a Git repository within a project directory, and then you can commit changes, create branches, merge them, and push/pull changes to/from a remote repository.
@@ -93,6 +94,13 @@ git clone – copy a remote repository to your local machine.
 [Remote Repository]
 
 
+vamsi bavani 
+----------------------
+vcs & git repo 
+stagging area & commit 
+Branches 
+Issues & pull requests
+
 ---------------------------
 git hub is one example of remote respository hosting services
  
@@ -167,30 +175,30 @@ fork
 -----------------
 goto pervious version 
 
-git revert <commit hash>
+git checkout <commit hash>
+
+
+------------------------------
+git revert  - goto previous version and update the new commit 
+
+git revert commit hash
+or 
+git revert head-1
+or
+git revert head-2 // 2nd previous one 
+
+
+git revert commit hash --no-edit //just goto previous
 
 
 
-
--------------------------------------------------------------------
-git push 
-git clone 
-
-history commit 
-return to previous 
-log
-
-branches
-create 
-change 
-swift
-delete
-merge
-rebase
+git reset - delete the all commits except given commit id
+git reset commit id
 
 
-pull request 
+soft vs hard  reset 
+git reset -soft commit id  //commit history but store in staging area
+git reset -hard commit id
 
-
-cherry pick
---------------------------------------------------------------
+reset vs revert
+-------------------------------
