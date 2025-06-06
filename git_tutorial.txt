@@ -1,0 +1,294 @@
+topics 
+-------------
+vcs & git repo 
+staging area & commits
+Branches
+Issues & PRs
+=====================
+
+
+step 1 : initilization 
+==========================
+first time push code
+----------------
+git init  
+git add . 
+git status
+git commit - m "first commit" 
+git branch -M main 
+git remote add origin https://github.com/mbrahmasai/git_github.git
+git push -u origin main
+
+==========================================
+git add (working directory to staging area)
+==============================================
+| Command              | Description                                                                                      |
+| -------------------- | ------------------------------------------------------------------------------------------------ |
+| `git add .`          | Adds **all changes** (new, modified, deleted files) in the current directory and subdirectories. |
+| `git add -A`         | Adds **all changes**, like `.` but also includes deleted files more explicitly.                  |
+| `git add *`          | Adds all **untracked** and **modified files** in the current directory **(not subfolders)**.     |
+| `git add index.html` | Stages a **specific file**.                                                                      |
+| `git add folder/`    | Stages **all files inside a folder**.                                                           |
+
+===============================================================
+note : from working directory to stagging area , you option to add single file or all files or multliples 
+from the stagging area to local  and  local to remote , you need to pass all files which are present.
+==================================================================
+git status
+========================================
+The git status command shows the state of the working directory and staging area.
+
+| Section                                   | Description                                                   |
+| ----------------------------------------- | ------------------------------------------------------------- |
+| 🔴 `Changes not staged for commit`        | Modified files that need to be added with `git add`.          |
+| 🟢 `Changes to be committed`              | Files that have been staged with `git add`, ready for commit. |
+| ⚪ `Untracked files`                       | New files not yet tracked by Git. Add them with `git add`.    |
+| ✅ `Nothing to commit, working tree clean` | All changes are committed, nothing new.                       |
+
+============================
+git commit
+=============================
+The git commit command is used to save your staged changes to the Git repository history.
+
+git commit -m "Your commit message"
+
+-m specifies the message describing the changes.
+The message should clearly explain what was changed and why.
+
+| Command                      | Description                                                                                                  |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `git commit -m "message"`    | Commits staged changes with a message.                                                                       |
+| `git commit`                 | Opens the default text editor to write a detailed commit message (if no `-m` is given).                      |
+| `git commit -a -m "message"` | Automatically stages **all modified** (tracked) files and commits them. *(Untracked files are not included)* |
+| `git commit --amend`         | Modify the last commit (e.g., to change the message or add more files).                                      |
+
+======================================================================
+git log
+======================================================================
+The git log command shows the commit history of your repository. It's useful for viewing past commits, who made them, and when.
+
+| Command                        | Description                                                       |
+| ------------------------------ | ----------------------------------------------------------------- |
+| `git log`                      | Shows full commit history.                                        |
+| `git log --oneline`            | Compact view: one line per commit.                                |
+| `git log --graph`              | Visualizes the branch structure.                                  |
+| `git log -p`                   | Shows changes (diffs) introduced in each commit.                  |
+| `git log --stat`               | Shows summary of changes: which files changed and how many lines. |
+| `git log --author="Your Name"` | Filters commits by author.                                        |
+| `git log <file>`               | Shows commit history for a specific file.                         |
+
+🧾 Examples
+
+git log --oneline --graph
+git log --stat
+git log --author="Alice"
+git log src/app.js
+
+
+
+🖱️ Bonus Tips While Inside git log:
+
+| Key            | Action               |
+| -------------- | -------------------- |
+| `q`            | Quit/Exit            |
+| `↑ / ↓`        | Scroll up/down       |
+| `SPACE`        | Scroll down one page |
+| `b`            | Scroll back one page |
+| `/search_term` | Search inside logs   |
+==========================================================
+access token 
+======================================================
+A Git access token (commonly used with GitHub, GitLab, Bitbucket, etc.) is a secure way to authenticate with Git remote repositories instead of using a password—especially since most platforms no longer support username/password for Git operations.
+
+✅ How to Create a Personal Access Token (GitHub example)
+🔗 Step-by-step (for GitHub):
+Go to: https://github.com/settings/tokens
+
+Click "Generate new token (classic)" or use "Fine-grained tokens"
+
+Set:
+
+Name (e.g., My Git Token)
+
+Expiration date
+
+Scopes (e.g., check repo, workflow for repo access)
+
+Click Generate token
+
+Copy the token and store it safely. You won’t see it again!
+
+🔒 Usage Example
+When pushing code to GitHub, if you're asked for your credentials:
+
+Username: Your GitHub username
+
+Password: Paste the personal access token
+
+Or set it in your terminal using:
+--------------------------------------
+git remote set-url origin https://<TOKEN>@github.com/username/repo.git
+Replace <TOKEN>, username, and repo accordingly.
+
+📌 For Git CLI Authentication (Recommended)
+Use a credential helper to store your token:
+
+git config --global credential.helper cache  # or use 'store' for permanent storage
+============================================================
+clone
+=============================================
+The git clone command is used to copy (clone) a remote Git repository to your local machine.
+
+git clone <repository-url>
+
+
+| Option                     | Description                                                      |
+| -------------------------- | ---------------------------------------------------------------- |
+| `--depth 1`                | Clone only the latest commit (shallow clone) to save time/space. |
+| `-b <branch>`              | Clone a specific branch.                                         |
+| `git clone <url> <folder>` | Clone into a custom folder.                                      |
+
+
+🧾 Examples
+1.Clone a full repo:
+
+git clone https://github.com/nodejs/node.git
+
+2.Clone into a specific folder:
+
+git clone https://github.com/user/repo.git my-folder
+
+3.Clone a specific branch:
+
+git clone -b dev https://github.com/user/repo.git
+
+4.Shallow clone (only latest snapshot):
+
+git clone --depth 1 https://github.com/user/repo.git
+
+
+🔐 If Authentication is Needed
+Use a Personal Access Token if cloning private repos from GitHub.
+
+git clone https://<your-token>@github.com/username/repo.git
+===================================================================
+collaberators
+========================================
+👥 GitHub Collaborators — Explained
+Collaborators are people who are granted access to a GitHub repository so they can contribute directly (push code, create branches, manage issues, etc.).
+
+✅ How to Add Collaborators to a GitHub Repository
+🧭 Step-by-Step:
+Go to your repository on GitHub.
+
+Click on "Settings" (top-right of the repo).
+
+In the left sidebar, click "Collaborators and teams" (or "Manage access").
+
+Click “Invite a collaborator”.
+
+Enter the GitHub username or email of the person.
+
+Click "Add" or "Send invitation".
+
+🔔 They’ll receive an email or GitHub notification to accept the invitation.
+
+🔒 Collaborator Permissions
+
+| Role         | What they can do                                     |
+| ------------ | ---------------------------------------------------- |
+| **Read**     | View code, issues, discussions                       |
+| **Write**    | Push code, manage issues & PRs                       |
+| **Admin**    | Full access, including adding/removing collaborators |
+| **Maintain** | Manage repo settings without full admin rights       |
+
+
+🤝 Good Practice for Teams
+Use branches and pull requests to manage collaboration.
+Add a .gitignore and README.md to set up a clean repo.
+Set branch protection rules to control merging and reviews.
+=======================================================
+git ignore
+========================================================
+The .gitignore file tells Git which files or directories to ignore, so they won’t be tracked or committed to the repository.
+
+✅ Why Use .gitignore?
+To avoid committing temporary, sensitive, or unnecessary files, like:
+
+node_modules/
+
+.env
+
+*.log
+
+dist/
+
+OS files like .DS_Store, Thumbs.db
+
+📝 How to Create a .gitignore File
+In your project root, create a file named .gitignore
+
+Add file/folder patterns to ignore, one per line.
+
+Example .gitignore file:
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+
+# Log files
+*.log
+
+# OS/System files
+.DS_Store
+Thumbs.db
+
+📌 Important Notes
+Tracked files won't be ignored even if listed in .gitignore. You must untrack them:
+
+git rm --cached filename
+
+
+| Pattern      | Meaning                              |
+| ------------ | ------------------------------------ |
+| `*.log`      | Ignore all `.log` files              |
+| `secret.txt` | Ignore a specific file               |
+| `/temp/`     | Ignore the `temp` folder at the root |
+| `**/temp/`   | Ignore all `temp` folders, anywhere  |
+
+=====================================================
+read me 
+=============================================================
+
+cherry pick 
+stash 
+
+
+
+
+=================
+git remote 
+======================
+git remote           =Lists the short names of each remote you’ve connected (e.g., origin).
+git remote -v         =  Displays the remote names along with their fetch and push URLs.
+
+git remote add <name> <url>    = Adds a new remote repository with the given name.
+
+ex: git remote add origin https://github.com/user/repo.git
+
+git remote remove <name>   = Removes a remote repository.
+
+ex: git remote remove origin
+
+git remote show <name>  = Shows information like fetch/push URLs, tracking branches, etc.
+ex= git remote show origin
+
+
+
+
